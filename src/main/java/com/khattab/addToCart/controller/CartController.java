@@ -4,6 +4,7 @@ import com.khattab.addToCart.dto.CartDetails;
 import com.khattab.addToCart.entity.Cart;
 import com.khattab.addToCart.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/ecommerce/cart")
+@RequestMapping("/ecommerce/carts")
 public class CartController {
 
     private final CartService cartService;
@@ -24,12 +25,12 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public Cart addToCart(@RequestBody Cart cart) {
         return cartService.addToCart(cart);
     }
 
-    @PostMapping("/remove")
+    @DeleteMapping()
     public void removeFromCart(@RequestBody Cart cart) {
         cartService.removeFromCart(cart);
     }
